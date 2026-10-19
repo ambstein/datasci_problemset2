@@ -2,6 +2,7 @@
 #For full credit, provide answers for at least 7/11
 
 #List names of students collaborating with: 
+## Sarah & Dylan
 
 ### SETUP: RUN THIS BEFORE STARTING ----------
 
@@ -16,7 +17,10 @@ ds <- read_csv("data_raw/rolling_stone_500.csv")
 #Use a function to check that your conversion succeeded
 
 #ANSWER
-
+glimpse(ds)
+ds$Year <- as.numeric(ds$Year)
+is.numeric(ds$Year)
+glimpse(ds)
 
 ### Question 2 ---------- 
 
@@ -24,7 +28,9 @@ ds <- read_csv("data_raw/rolling_stone_500.csv")
 # change ds so that all of the variables are lowercase
 
 #ANSWER
-
+ds <- ds %>%
+  rename_with(tolower)
+glimpse(ds)
 
 ### Question 3 ----------
 
@@ -33,7 +39,13 @@ ds <- read_csv("data_raw/rolling_stone_500.csv")
 # Hint: read the documentation for ?floor and make sure year is numeric (from Question 1)
 
 #ANSWER
+?floor
+ds <- ds %>%
+  mutate(decade = floor(year / 10.5) * 10)
 
+# 
+
+glimpse(ds)
 
 ### Question 4 ----------
 
