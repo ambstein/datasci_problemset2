@@ -43,7 +43,10 @@ glimpse(ds)
 ds <- ds %>%
   mutate(decade = floor(year / 10.5) * 10)
 
-# 
+#YAY
+
+# trial and error led me to using 10.5 * 10 because /10 + *10 were resulting in 
+#  numbers that I didn't want. 10.5 * 10 solved my problem!
 
 glimpse(ds)
 
@@ -52,7 +55,10 @@ glimpse(ds)
 # Sort the dataset by rank so that 1 is at the top
 
 #ANSWER
+ds <- ds %>%
+  arrange(rank)
 
+glimpse(ds)
 
 ### Question 5 ----------
 
@@ -60,6 +66,10 @@ glimpse(ds)
 # That just has the artists and songs for the top 10 songs
 
 #ANSWER
+top10 <- ds %>%
+  filter(rank < 11) %>%
+  select(artist, song)
+glimpse(top10)
 
 
 
@@ -70,7 +80,15 @@ glimpse(ds)
 # Hint, the function drop_na() might help. Read ?drop_na
 
 #ANSWER
+ds_sum <- ds %>%
+  summarize(earliest_year = min(year, na.rm = T),
+            most_recent_year = max(year, na.rm = T),
+            avg_year = mean(year, na.rm = T)
+  )
+glimpse(ds_sum)
 
+?drop_na
+# OHH I see how this could have been useful so I wasn't re-typing na.rm = T
 
 ### Question 7 ----------
 
