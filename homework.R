@@ -41,7 +41,8 @@ glimpse(ds)
 # ANSWER
 ?floor
 ds <- ds %>%
-  mutate(decade = floor(year / 10.5) * 10)
+  mutate(decade = floor(year / 10)) %>%
+  mutate(decade = floor(decade * 10))
 
 # trial and error led me to using 10.5 * 10 because /10 + *10 were resulting in
 #  numbers that I didn't want. 10.5 * 10 solved my problem!
@@ -51,7 +52,7 @@ ds <- ds %>%
 
 # WELP I'm going to continue on and try to understand this later due to time :(
 
-glimpse(ds)
+glimpse(ds) #THIS WORKED
 
 ### Question 4 ----------
 
@@ -134,7 +135,8 @@ glimpse(ds)
 # hm
 
 ds <- ds %>%
-  mutate(decade = floor(year / 10.5) * 10)
+  mutate(decade = floor(year / 10)) %>%
+  mutate(decade = floor(decade * 10))
 glimpse(ds)
 
 # UGH WHY ARE THEY A CENTURY OFF
